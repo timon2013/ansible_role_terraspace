@@ -1,0 +1,21 @@
+---
+- name: Add reposirtory 
+  copy:
+    content: |
+      [boltops-noarch]
+      name=BoltOps Repo
+      baseurl=https://yum.boltops.com/noarch/
+      enabled=1
+      gpgkey=https://yum.boltops.com/boltops-key.public
+      gpgcheck=1
+    dest: /etc/yum.repos.d/boltops.repo
+
+- name: Import a key from a url - https://yum.boltops.com/boltops-key.public
+  rpm_key:
+    state: present
+    key: https://yum.boltops.com/boltops-key.public
+
+- name: Install terraspace
+  yum:
+    name: terraspace
+    state: present

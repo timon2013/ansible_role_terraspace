@@ -1,0 +1,6 @@
+---
+# tasks file for ansible_role_terraspace
+- name: Include OS Specific setup tasks
+  include: setup-{{ ansible_os_family }}.yml
+- name: Include OS Specific config tasks
+  include: configure-{{ ansible_os_family }}.yml
